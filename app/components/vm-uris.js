@@ -487,6 +487,11 @@ export default Ember.Component.extend({
     var isIpad = navigator.userAgent.toLowerCase().indexOf('ipad') > -1;
     var scheme = 'https';
 
+    // HACK force rewrite old vm name
+    if (/os.nextdeploy.+/.test(uri)) {
+        uri = uri.replace("os.nextdeploy", "nextdeploy");
+    }
+
     // HACK force http for local install
     if (uri.match(/os.nextdeploy$/)) {
       scheme = 'http';
